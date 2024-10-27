@@ -90,7 +90,25 @@ export function useEventListener<E extends keyof HTMLElementEventMap>(
 /**
  * Register using addEventListener on mounted, and removeEventListener automatically on unmounted.
  *
- * Overload 5: Custom event target with event type infer
+ * Overload 5: Explicitly SVGElement target
+ *
+ * @see https://vueuse.org/useEventListener
+ * @param target
+ * @param event
+ * @param listener
+ * @param options
+ */
+export function useEventListener<E extends keyof SVGElementEventMap>(
+  target: MaybeRefOrGetter<SVGElement | null | undefined>,
+  event: Arrayable<E>,
+  listener: (this: SVGElement, ev: SVGElementEventMap[E]) => any,
+  options?: boolean | AddEventListenerOptions
+): () => void
+
+/**
+ * Register using addEventListener on mounted, and removeEventListener automatically on unmounted.
+ *
+ * Overload 6: Custom event target with event type infer
  *
  * @see https://vueuse.org/useEventListener
  * @param target
@@ -108,7 +126,7 @@ export function useEventListener<Names extends string, EventType = Event>(
 /**
  * Register using addEventListener on mounted, and removeEventListener automatically on unmounted.
  *
- * Overload 6: Custom event target fallback
+ * Overload 7: Custom event target fallback
  *
  * @see https://vueuse.org/useEventListener
  * @param target
